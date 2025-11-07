@@ -53,10 +53,10 @@ def get_historical_weather(lat, lon, date):
     return response.json()
 
 
-if __name__ == "__main__":
 
 
-    city = "Stockholm"
+
+def fetch_weather(city="Stockholm"):
     lat, lon = get_coordinates(city)
     
     current_weather = get_current_weather(lat, lon)
@@ -66,8 +66,12 @@ if __name__ == "__main__":
     clouds = current_weather['weather'][0]['description']
     precipitation = current_weather.get('rain', {}).get('1h', 0)
     today = dt.datetime.now().date()
+    return city, today, temp, feels_like, clouds, precipitation
 
 
+
+if __name__ == "__main__":
+    city, today, temp, feels_like, clouds, precipitation = fetch_weather()
     print(f"Weather in {city} on {today}:")
     print(f"Temperature: {temp}°F, Feels like: {feels_like}°F,")
     print(f"Conditions: {clouds},")
