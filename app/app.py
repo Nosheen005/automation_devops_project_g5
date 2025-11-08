@@ -9,15 +9,18 @@ OWM_ICON = "https://openweathermap.org/img/wn/{code}@2x.png"
 
 @app.route("/")
 def index():
-    lat, lon = get_coordinates("Stockholm")
+    city_name = "Stockholm"                   
+    lat, lon = get_coordinates(city_name)     
 
     now = get_current_weather(lat, lon)
-    now_w = now["weather"][0]  
+    now_w = now["weather"][0]
+
     page_data = {
         "temperature_c": int(now["main"]["temp"]),
         "weather": now_w["description"].capitalize(),
         "time": dt.datetime.now().strftime("%B, %d - %Y"),
         "icon": OWM_ICON.format(code=now_w.get("icon", "01d")),
+        "city": city_name,                
     }
 
     last_year_data = None
@@ -41,6 +44,7 @@ def index():
                 "weather": hw["description"].capitalize(),
                 "date": target.strftime("%B, %d - %Y"),
                 "icon": OWM_ICON.format(code=hw.get("icon", "01d")),
+                "city": city_name,              
             }
 
     except requests.HTTPError as e:
