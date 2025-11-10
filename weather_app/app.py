@@ -1,7 +1,7 @@
 import datetime as dt
 import requests
 from flask import Flask, render_template
-from src.api_call import get_coordinates, get_current_weather, get_historical_weather
+from weather_app.api_call import get_coordinates, get_current_weather, get_historical_weather
 
 app = Flask(__name__)
 
