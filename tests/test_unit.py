@@ -1,5 +1,5 @@
 import pytest
-from src.transform import f_to_c, transform_weather
+from weather_app.transform import f_to_c, transform_weather
 
 pytestmark = pytest.mark.unit  
 

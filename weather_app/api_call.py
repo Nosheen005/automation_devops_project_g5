@@ -5,7 +5,6 @@ import datetime as dt
 from dotenv import load_dotenv
 
 
-
 load_dotenv()
 API_KEY = os.getenv("open_api_key")
 
@@ -41,7 +40,7 @@ def get_current_weather(lat, lon):
     response.raise_for_status()
     return response.json()
 
-from src.transform import transform_weather, f_to_c  # added for transformation of data-----
+from weather_app.transform import transform_weather, f_to_c  # added for transformation of data-----
 
 
 

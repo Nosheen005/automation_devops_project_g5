@@ -1,5 +1,5 @@
 import pytest
-from src.api_call import get_coordinates, get_current_weather
+from weather_app.api_call import get_coordinates, get_current_weather
 
 pytestmark = pytest.mark.integration 
 
