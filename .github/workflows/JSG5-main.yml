@@ -52,7 +52,7 @@ jobs:
         pytest --junitxml=reporty.xml
 
     - name: Print test result
-      if: ${{ steps.test.outcome == 'failure' && github.event.inputs.failed_test == 'true' }}
+      if: ${{ steps.test.outcome == 'success' && github.event.inputs.failed_test == 'true' }}
       run: |
         echo "Test failed, generating report"
         # creating folder for reports (idempotent with -p)
