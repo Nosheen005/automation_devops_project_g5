@@ -16,7 +16,7 @@ on:
         default: true
 
 env:
-  OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
+  OPfEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
 
 jobs:
   test:
@@ -52,11 +52,13 @@ jobs:
         pytest --junitxml=reporty.xml
 
     - name: Print test result
-      if: ${{ steps.test.outcome == 'success' && github.event.inputs.failed_test == 'true' }}
+      if: ${{ steps.test.outcome == 'failure' && github.event.inputs.failed_test == 'true' }}
       run: |
         echo "Test failed, generating report"
         # creating folder for reports (idempotent with -p)
         mkdir -p failed_reports_dir 
+        #moving the file to the folder
+        mv reporty.xml failed_reports_dir/
     
     - name: Upload pytest report as artifact
       uses: actions/upload-artifact@v4
