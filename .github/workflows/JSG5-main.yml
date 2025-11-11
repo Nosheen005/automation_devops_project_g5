@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  API_KEY: ${{ secrets.OPEN_API_KEY }}
+  OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
 
 jobs:
   test:
