@@ -29,6 +29,19 @@ jobs:
       run: |
         # The pytest command will find and execute all functions starting with 'test_'
 
+    - name: saving test run artifact
+    - run: mkdir -p test_run_artifacts
+    
+    - uses: actions/upload-artifact@v4
+      with:
+        # Name of test artifact to upload
+        name: "test_${{ github.job }}"
+        # A file, directory or wildcard pattern that describes what to upload
+        path: test_run_artifacts/name
+
+    - name: Very list fo files in folder
+      run: ls -l
+
 
 #vara tydliga namngivningar för bland annat workflows, jobs och steps.
 #2. Användning av environment-variabler, GitHub-kontextvariabler och GitHub Secrets (till exempel, API-nycklar och Docker-credentials).
