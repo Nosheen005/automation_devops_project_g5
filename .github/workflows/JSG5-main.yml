@@ -32,30 +32,8 @@ jobs:
     - name: Install pytest
       run: pip install pytest
     - name: Run pytest
-      run: pytest # pytest command finds and execute files starting with 'test_'
+      run: pytest --tee test_run_output.txt # pytest command finds and execute files starting with 'test_' and save results to a file
 
-    - name: Creating and uploading test run metadata file
-      run: |    
-        # Creating folder (idempotent)
-        mkdir -p "$ {{env.METADATA_DIR}} "
-          
-        # Adding metadata to file structured data to the file
-          cat >
-            "test_id": "test_${{ github.run_id }}",
-            "branch": "${{ github.ref_name }}",
-            "actor": "${{ github.actor }}",
-            "repository": "${{ github.repository }}",
-            "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-
-    - uses: actions/upload-artifact@v4
-      with:
-        # Name of test artifact to upload
-        name: "${{ env.METADATA_FILE}}"
-        # A file, directory or wildcard pattern that describes what to upload
-        path: "$ {{env.METADATA_DIR/env.METADATA_FILE}}"
-
-    - name: Very list fo files in folder
-      run: ls -l
 
 
 
