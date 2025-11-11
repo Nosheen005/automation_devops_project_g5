@@ -16,7 +16,7 @@ on:
         default: false
 
 env:
-  OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
+  OPEdN_API_KEY: ${{ secrets.OPEN_API_KEY }}
 
 jobs:
   test:
