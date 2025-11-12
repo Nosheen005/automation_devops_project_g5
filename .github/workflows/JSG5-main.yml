@@ -1,7 +1,7 @@
 name: John Sandsjö Group 5 - main workflow
 
-#pipeline starts at push
 on:
+  #pipeline starts at push
   push:
     branches:
       - main
