@@ -40,8 +40,8 @@ def get_current_weather(lat, lon):
     response.raise_for_status()
     return response.json()
 
-from tests.transform import transform_weather, f_to_c  # added for transformation of data-----
-
+#from tests.transform import transform_weather, f_to_c  # added for transformation of data-----
+# 1
 
 
 def get_historical_weather(lat, lon, date):
@@ -62,46 +62,12 @@ def get_historical_weather(lat, lon, date):
     response = requests.get(history_url, params=params)
     response.raise_for_status()
     return response.json()
-
+    
+    
 
 if __name__ == "__main__":
     city = "Stockholm"
     lat, lon = get_coordinates(city)
-
-    current_weather = get_current_weather(lat, lon)
-
-    weather = transform_weather(current_weather)# added new Nosh
-    temp_c = weather["temperature_c"]# added new Nosh
-    feels_like_c = weather["feels_like_c"]# added new Nosh
-
-    temp = current_weather['main']['temp']
-    feels_like = current_weather['main']['feels_like']
-    clouds = current_weather['weather'][0]['description']
-    icon = current_weather['weather'][0]['icon']
-    precipitation = current_weather.get('rain', {}).get('1h', 0)
-    today = dt.datetime.now().date()
-    
-    
-
-
-
-if __name__ == "__main__":
-    city, today, temp, feels_like, clouds, precipitation = fetch_weather()
-    print(f"Weather in {city} on {today}:")
-    print(f"Temperature: {temp}°F, Feels like: {feels_like}°F,")
-    print(f"Conditions: {clouds},")
-    print(f"Precipitation: {precipitation}, mm")
-    print(f"Temperature: {temp}°F ({temp_c}°C), Feels like: {feels_like}°F ({feels_like_c}°C),") # added newly Nosh
-
-
-
-
-
-
-
-
-
-    #historical_date = today - dt.timedelta(days=5)
-    #historical_weather = get_historical_weather(lat, lon, historical_date)
-
-    #print(f"Historical weather in {city} on {historical_date}: Temperature: {historical_weather['current']['temp']}°F, Conditions: {historical_weather['current']['weather'][0]['description']}")
+    weather = get_current_weather(lat, lon)
+    description = weather["weather"][0]["description"]
+    print(description)
