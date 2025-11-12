@@ -104,11 +104,6 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
     
-    - name: Extract metadata (tags, labels) for Docker
-      id: metadata
-      uses: docker/metadata-action@v5
-      with:
-        images: ${{ env.DOCKER_IMAGE }}
 
     - name: Build and Push Docker Image
     # This step performs the actual build and push operation.
@@ -117,5 +112,4 @@ jobs:
         context: . # Path to where dockerfile is (build context)
         file: ${{ env.DOCKERFILE_PATH }}
         push: true # flag to tell the action to push the image to Docker Hub
-        tags: ${{ steps.metadata.outputs.tags }}
-        labels: ${{ steps.metadata.outputs.labels }}
+        tags: ${{ env.DOCKER_IMAGE }}:latest #hard coded latest tag for simplicity
