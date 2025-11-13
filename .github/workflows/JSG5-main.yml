@@ -1,10 +1,10 @@
 name: John Sandsjö Group 5 - main workflow
 
 on:
-  #pipeline starts at push
-  #push:
-   # branches:
-    # - main
+  # pipeline starts at push
+  push:
+    branches:
+     - main
 
   #pipeline can be started manually
   workflow_dispatch:
