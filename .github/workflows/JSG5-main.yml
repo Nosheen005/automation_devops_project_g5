@@ -60,6 +60,7 @@ jobs:
         echo "test_outcome=${{ steps.pytest.outcome }}" >> $GITHUB_OUTPUT
     
     - name: Upload pytest report as artifact, as a txt file
+      if: ${{ github.event.inputs.print_test == 'true' }}
       uses: actions/upload-artifact@v4
       with:
         name: pytest-test-report
@@ -76,7 +77,7 @@ jobs:
 
     # custom condition so this job runs only if true test success 
     # because of overwritten in continue-on-error is true step
-    if: ${{ needs.test_job.true_test_result == 'success' }}
+    if: ${{ needs.test_job.outputs.true_test_result == 'success' }}
     
     env:
     #name and path that the final built image in Docker Hub
