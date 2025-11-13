@@ -56,7 +56,7 @@ jobs:
         path: test_report.txt
     
     - name: Download pytest report
-    - uses: actions/download-artifact@v5
+      uses: actions/download-artifact@v5
       with:
         name: pytest-test-report
       
