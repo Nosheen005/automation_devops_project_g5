@@ -1,4 +1,4 @@
-name: HY Individual DevOps Pipeline
+name: Nosheen DevOps Pipeline
 
 on:
   push:
